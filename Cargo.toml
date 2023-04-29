@@ -1,0 +1,17 @@
+[package]
+name = "rustcracker"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+thelib = { git = "https://github.com/thaR00t/rustcracker", rev = "9f35b8e" }
+hex = "0.4.3"
+sha1 = "0.10.5"
+argparse = "0.2.2"
+io = "0.0.2"
+clap = { version = "4.0", features = ["derive"] }
+md-5 = "0.10.5"
+sha2 = "0.10"
+cfonts = "1.1.0"
