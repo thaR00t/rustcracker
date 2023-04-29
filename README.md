@@ -19,6 +19,6 @@ sudo ./install.sh
 
 Usage:
 ````
-rustcracker --help
+rustcracker [OPTIONS] --hash <HASH> --wordlist <WORDLIST>
 ````
 
