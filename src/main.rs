@@ -5,14 +5,21 @@ use sha2::{
     Sha384,
     Sha512,
     };
-use clap::Parser;
+use clap::{
+    arg,
+    Parser,
+    command, 
+    };
 use std::{
     error::Error,
     fs::File,
     io::{BufRead,BufReader}
 };
-
-use cfonts::{say, Options, Fonts };
+use cfonts::{
+    say, 
+    Options, 
+    Fonts 
+    };
 
 
 const SHA1_TYPE: &str = "sha1";
@@ -34,17 +41,25 @@ const SHA512_TYPE: &str = "sha512";
 const SHA512_HEX_MAX_LENGTH: usize = 128;
 
 
-
-#[derive(Parser)]
+#[derive(Debug,Parser)]
+#[command(author, version = "0.1", about,long_about = String::from("AVAILABLE HASH:
+[*] md5
+[*] sha1    
+[*] sha224
+[*] sha256
+[*] sha384
+[*] sha512"))]
 struct Cli{
     #[arg(short, long)]
     hash: String,
     #[arg(short, long)]
     wordlist: std::path::PathBuf,
-    #[arg(short, long, default_value_t = SHA1_TYPE.to_string())]
-    type_hash: String
-}
 
+    #[arg(short, long, default_value_t = SHA1_TYPE.to_string())]
+    type_hash: String,
+    //#[command(subcommand)]
+	//list_hashes: HASHES
+}
 fn main()  ->Result<(), Box<dyn Error>> {
     let args = Cli::parse();
     //creating the hash type var which contains the address of the type_hash var.
@@ -96,22 +111,6 @@ fn main()  ->Result<(), Box<dyn Error>> {
         return Err("No hash type found.".into());
     }
     
-
-    /* Work in progress:
-    Trying to work to find out how to do multiple selection with match,
-    Still not working
-    Issues: Unkown
-     */
-
-    //match h_type {
-    //    &SHA1_TYPE.to_string() => {
-    //        sha_1().map_err(|err| println!("{:?}", err)).ok();
-    //    },
-    //    &MD5_TYPE.to_string() =>{
-    //        md_5().map_err(|err| println!("{:?}", err)).ok();
-    //    },
-    //    _ => {println!("No hash type found.")};
-    //}
     Ok(())
     
 }
