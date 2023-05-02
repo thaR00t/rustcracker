@@ -14,6 +14,9 @@ cargo build --release
 ````
 If you'd like to do it automatically you can run:
 ````
+sudo chmod +x install.sh
+````
+````
 sudo ./install.sh
 ````
 
